@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600;700;800;900&family=Open+Sans:wght@400;600;700;800&family=Roboto+Condensed:wght@600;700;800&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <style>
     :root {
       --ink: #101827;
@@ -104,6 +105,9 @@
     }
 
     .deadline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       padding: 9px 12px;
       color: #fff3d7;
       border: 1px solid rgba(255,255,255,.28);
@@ -115,6 +119,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 9px;
       min-height: 46px;
       padding: 12px 18px;
       border: 1px solid transparent;
@@ -126,6 +131,14 @@
       font-weight: 800;
       text-align: center;
       cursor: pointer;
+    }
+
+    .button i,
+    .deadline i,
+    .brand i {
+      flex: 0 0 auto;
+      font-size: .95em;
+      line-height: 1;
     }
 
     .button.secondary {
@@ -225,6 +238,7 @@
     }
 
     .video-shell {
+      position: relative;
       padding: clamp(12px, 2.2vw, 22px);
     }
 
@@ -236,6 +250,49 @@
       object-fit: cover;
       border-radius: 14px;
       background: var(--navy);
+    }
+
+    .video-play-button {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: clamp(62px, 7vw, 84px);
+      height: clamp(62px, 7vw, 84px);
+      padding: 0;
+      transform: translate(-50%, -50%);
+      color: var(--navy);
+      background: rgba(255,255,255,.92);
+      border: 0;
+      border-radius: 50%;
+      box-shadow: 0 18px 42px hsl(206.84 95% 7.84% / .28);
+      cursor: pointer;
+      transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+    }
+
+    .video-play-button::before {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      margin-left: 6px;
+      border-top: 14px solid transparent;
+      border-bottom: 14px solid transparent;
+      border-left: 22px solid currentColor;
+    }
+
+    .video-play-button:hover,
+    .video-play-button:focus-visible {
+      transform: translate(-50%, -50%) scale(1.04);
+      background: var(--white);
+    }
+
+    .video-shell.is-playing .video-play-button {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
     }
 
     .progress-row {
@@ -253,7 +310,7 @@
     .progress {
       height: 9px;
       overflow: hidden;
-      background: #e6ebf1;
+      background: var(--blue);
       border-radius: 999px;
     }
 
@@ -261,7 +318,7 @@
       display: block;
       width: 0;
       height: 100%;
-      background: linear-gradient(90deg, var(--blue), var(--gold), var(--red));
+      background: var(--warm-accent);
       transition: width .25s linear;
     }
 
@@ -278,7 +335,10 @@
     }
 
     .section-link {
-      min-height: 68px;
+      display: grid;
+      justify-items: center;
+      align-content: center;
+      min-height: 58px;
       padding: 12px 14px;
       border-right: 1px solid var(--line);
       color: var(--muted);
@@ -287,6 +347,16 @@
       font-size: 16px;
       text-align: center;
       text-decoration: none;
+    }
+
+    .nav-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 22px;
+      height: 22px;
+      margin-bottom: 4px;
+      color: var(--blue);
+      font-size: 15px;
     }
 
     .section-link:last-child {
@@ -301,13 +371,6 @@
       font-weight: 800;
     }
 
-    .section-link span {
-      display: block;
-      margin-top: 6px;
-      font-size: 13px;
-      font-weight: 650;
-    }
-
     .section-link.active {
       color: var(--navy);
       background: var(--yellow-panel);
@@ -317,11 +380,11 @@
         0 10px 22px hsl(206.84 95% 7.84% / .12);
     }
 
-    .section-link.active span {
-      color: hsl(206.84 95% 7.84% / .78);
+    .section-link.active b {
+      color: var(--navy);
     }
 
-    .section-link.active b {
+    .section-link.active .nav-icon {
       color: var(--navy);
     }
 
@@ -342,7 +405,6 @@
       display: block;
       padding: 0 0 clamp(18px, 3vw, 34px);
       scroll-margin-top: 86px;
-      border-bottom: 1px solid var(--line);
     }
 
     .tab-panel:last-child {
@@ -361,6 +423,11 @@
     }
 
     .panel-head h2 {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
       max-width: 680px;
       margin: 0 auto;
       color: #000;
@@ -373,6 +440,13 @@
         0 1px 0 rgba(255,255,255,.42),
         0 8px 18px hsl(206.84 95% 7.84% / .14);
       text-wrap: balance;
+    }
+
+    .panel-head h2 i {
+      flex: 0 0 auto;
+      color: var(--blue);
+      font-size: .72em;
+      text-shadow: none;
     }
 
     .panel-head p {
@@ -394,7 +468,15 @@
       padding: 0 clamp(26px, 4vw, 52px);
     }
 
+    .tab-panel:first-of-type .article {
+      padding-top: clamp(24px, 3vw, 38px);
+    }
+
     .article h3 {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
       margin: 26px 0 8px;
       color: var(--navy);
       font-family: var(--font-condensed);
@@ -402,6 +484,75 @@
       line-height: 1.14;
       font-weight: 800;
       letter-spacing: .01em;
+    }
+
+    .article h3 i {
+      flex: 0 0 auto;
+      color: var(--blue);
+      font-size: .78em;
+    }
+
+    .article h3.fact-heading {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr);
+      align-items: start;
+      gap: 14px;
+      margin-top: 34px;
+      font-family: var(--font-heading);
+      font-size: clamp(23px, 2.4vw, 31px);
+      line-height: 1.12;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .fact-title {
+      display: block;
+      min-width: 0;
+    }
+
+    .fact-number {
+      flex: 0 0 auto;
+      display: inline-grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin-top: .02em;
+      color: var(--white);
+      background: var(--blue);
+      border-radius: 50%;
+      font-family: var(--font-heading);
+      font-size: 19px;
+      font-weight: 900;
+      line-height: 1;
+      box-shadow: 0 10px 22px hsl(207.49 89.05% 39.41% / .22);
+    }
+
+    .impact-list {
+      display: grid;
+      gap: 12px;
+      margin: 0 0 18px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .impact-list li {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      color: #303949;
+      line-height: 1.5;
+    }
+
+    .impact-list i {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      color: var(--blue);
+      background: hsl(207.49 89.05% 39.41% / .08);
+      border-radius: 50%;
+      font-size: 15px;
     }
 
     .article h3:first-child {
@@ -718,11 +869,18 @@
       }
 
       .section-link {
-        min-height: 64px;
+        min-height: 58px;
         padding: 10px 8px;
         border-right: 1px solid hsl(206.84 95% 7.84% / .12);
         border-bottom: 0;
         text-align: center;
+      }
+
+      .nav-icon {
+        width: 20px;
+        height: 20px;
+        margin-bottom: 4px;
+        font-size: 13px;
       }
 
       .section-link:last-child {
@@ -733,17 +891,27 @@
         font-size: 14px;
       }
 
-      .section-link span {
-        font-size: 11px;
-        line-height: 1.2;
-      }
-
       .progress-row {
         grid-template-columns: 1fr;
       }
 
       .article {
         font-size: 16px;
+      }
+
+      .tab-panel:first-of-type .article {
+        padding-top: 26px;
+      }
+
+      .article h3.fact-heading {
+        grid-template-columns: 38px minmax(0, 1fr);
+        gap: 12px;
+      }
+
+      .fact-number {
+        width: 38px;
+        height: 38px;
+        font-size: 17px;
       }
 
       .panel-head h2 {
@@ -798,19 +966,19 @@
   <header class="topbar wrap">
     <div class="brand">
       <span class="mark">IA</span>
-      <span>NICE | IANICE.org</span>
+      <span><i class="fa-solid fa-handshake-angle" aria-hidden="true"></i> NICE | IANICE.org</span>
     </div>
     <div class="top-actions">
-      <span class="deadline">Deadline: August 4</span>
-      <a class="button" href="https://www.regulations.gov/commenton/USCIS-2026-0067-0001" target="_blank" rel="noopener">Act Now</a>
+      <span class="deadline"><i class="fa-regular fa-clock" aria-hidden="true"></i> Deadline: August 4</span>
+      <a class="button" href="https://www.regulations.gov/commenton/USCIS-2026-0067-0001" target="_blank" rel="noopener"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Act Now</a>
     </div>
   </header>
 
   <main>
     <section class="hero wrap">
       <p class="eyebrow">Nonpartisan Iowa action</p>
-      <h1>Act by August 4, before Washington erases rural Iowa's comeback.</h1>
-      <p class="lead">Seven facts every Iowan should know, and one thing you can do before the deadline.</p>
+      <h1>3 Facts Every Iowan Should Know</h1>
+      <p class="lead">And one thing you can do before August 4 to protect what Iowa built.</p>
     </section>
 
     <section class="reading-layout wrap" aria-label="Issue video and action content">
@@ -818,13 +986,14 @@
         <section class="video-stage" id="issue-video" aria-label="Issue video">
           <div class="video-shell">
             <video class="issue-video" id="issueVideo" controls preload="metadata" playsinline>
-              <source src="https://kwqcdemo.s3.us-east-2.amazonaws.com/IA-NICE.mp4" type="video/mp4">
+              <source src="https://kwqcdemo.s3.us-east-2.amazonaws.com/IA-NICE-WEB.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
+            <button class="video-play-button" id="videoPlayButton" type="button" aria-label="Play video"></button>
           </div>
           <div class="progress-row">
             <div class="progress" aria-label="Video progress"><span id="progressBar"></span></div>
-            <span id="segmentLabel">Reading: The Facts</span>
+            <span id="segmentLabel">Reading: The Promise</span>
           </div>
         </section>
         <section class="final-cta">
@@ -832,114 +1001,93 @@
             <h2>Five minutes can protect what Iowa built.</h2>
             <p>Use the exact federal comment page and tell DHS, in plain Iowa language, why work authorization should be protected.</p>
           </div>
-          <a class="button" href="https://www.regulations.gov/commenton/USCIS-2026-0067-0001" target="_blank" rel="noopener">Leave Your Comment</a>
+          <a class="button" href="https://www.regulations.gov/commenton/USCIS-2026-0067-0001" target="_blank" rel="noopener"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Leave Your Comment</a>
         </section>
       </aside>
 
       <section class="content-card">
         <nav class="section-nav" aria-label="Article sections">
-          <a class="section-link active" href="#facts" data-section="facts" aria-current="true">
-            <b>The Facts</b>
-            <span>What rural Iowa proved</span>
+          <a class="section-link active" href="#fact-1" data-section="facts" aria-current="true">
+            <i class="nav-icon fa-solid fa-list-check" aria-hidden="true"></i>
+            <b>The Promise</b>
           </a>
-          <a class="section-link" href="#rule" data-section="rule">
-            <b>The Rule</b>
-            <span>What Washington could break</span>
+          <a class="section-link" href="#fact-3" data-section="rule">
+            <i class="nav-icon fa-solid fa-scale-balanced" aria-hidden="true"></i>
+            <b>The Problem</b>
           </a>
           <a class="section-link" href="#action" data-section="action">
+            <i class="nav-icon fa-solid fa-bullhorn" aria-hidden="true"></i>
             <b>Take Action</b>
-            <span>What Iowans can do now</span>
           </a>
         </nav>
 
-      <article class="tab-panel active" id="facts" aria-labelledby="facts-title">
-        <div class="panel-head">
-          <div>
-            <h2 id="facts-title">7 Facts Every Iowan Should Know</h2>
-            <p>The full case for why this matters to rural towns, employers, sponsors, schools, and grocery prices.</p>
-          </div>
-        </div>
-
+      <article class="tab-panel active" id="facts" aria-labelledby="fact-1">
         <div class="article">
-          <div class="fact-accordion">
-            <details open><summary>Rural Iowa can no longer grow its own population, and shrinking is what closes everything.</summary><p>Since 2020, deaths have outnumbered births in rural Iowa for the first time in decades (<a class="source" href="https://smalltowns.soc.iastate.edu/2026/06/14/iowa-popchange-2025/" target="_blank" rel="noopener">ISU Small Towns Project</a>). Even if no one else left for the city, our towns would still shrink. Fewer students, schools consolidate. Fewer patients, hospitals close. Fewer customers, storefronts go dark. New neighbors have to come from somewhere.</p></details>
-            <details><summary>When rural Iowa empties out, everyone's grocery bill goes up.</summary><p>Every day, Iowa produces roughly 20 million pounds of pork and 25 million eggs (<a class="source" href="https://www.ernst.senate.gov/news/columns/6-amazing-facts-about-iowa-agriculture-that-the-rest-of-the-country-should-know" target="_blank" rel="noopener">Sen. Joni Ernst</a>), leading the nation in pork, eggs, and corn (<a class="source" href="https://www.iowafarmbureau.com/Farm-Facts" target="_blank" rel="noopener">Iowa Farm Bureau / USDA</a>; <a class="source" href="https://www.iowacorn.org/corn-facts-faq/" target="_blank" rel="noopener">Iowa Corn Growers</a>). None of it reaches a shelf without the line worker, the truck driver, and the mechanic, and every link is short-handed. Trucking alone is missing 60,000 to 80,000 drivers, a gap that feeds straight into prices (<a class="source" href="https://forumtogether.org/article/addressing-the-u-s-truck-driver-shortage-the-role-of-foreign-born-drivers-visa-policy-and-supply-chain-impacts/" target="_blank" rel="noopener">National Immigration Forum</a>). Fewer people means higher costs at every step, and those costs compound in every grocery aisle in America. Keeping rural Iowa staffed is the cheapest inflation policy there is.</p></details>
-            <details><summary>Newcomers are the only growing part of rural Iowa. They replace the Iowans who leave.</summary><p>Without immigration, rural Iowa would have shrunk four times faster from 2022 to 2024 (<a class="source" href="https://smalltowns.soc.iastate.edu/2026/06/14/iowa-popchange-2025/" target="_blank" rel="noopener">ISU Small Towns Project</a>). In 2022, Iowa lost about 7,300 people to other states and gained about 7,300 international newcomers (<a class="source" href="https://www.axios.com/local/des-moines/2023/04/19/des-moines-metro-grows-rural-areas-decline" target="_blank" rel="noopener">Axios / U.S. Census</a>). Newcomers drove 84% of Iowa's recent growth and are nearing one in ten workers (<a class="source" href="https://www.kcrg.com/2025/03/05/immigration-plays-big-role-iowa-economy/" target="_blank" rel="noopener">KCRG / U.S. Census</a>; <a class="source" href="https://www.americanimmigrationcouncil.org/research/immigrants-in-iowa" target="_blank" rel="noopener">American Immigration Council</a>). Nobody is losing a job to a newcomer in a town Americans keep leaving. Those numbers cover all newcomers, on every kind of status. The Ukrainian families on this page are one small, fully vetted piece of that picture. And one Iowa town already proved what they can do.</p></details>
-            <details><summary>The DeWitt proof: a town saw its problem coming and fixed it, without waiting for Washington.</summary><p>No federal program. No state grant. No tax dollars. Churches opened their doors, and DeWitt residents raised roughly half a million dollars of their own money and gave thousands of volunteer hours (<a class="source" href="https://www.iowapbs.org/shows/iowalife/episode/13917/iowa-life-episode-306" target="_blank" rel="noopener">Iowa PBS</a>; <a class="source" href="https://welcome.us/stories/an-entire-town-rallies-to-welcome-and-support-ukrainian-families" target="_blank" rel="noopener">Welcome.US</a>), and welcomed 65 Ukrainians, more than 20 families. Every family reached financial independence, most within about four months. In a town of 5,000, that is over 1% growth, the equivalent of Chicago adding 30,000 people, while rural towns typically lose 2.2 residents per 1,000 every year (<a class="source" href="https://smalltowns.soc.iastate.edu/wp-content/uploads/sites/504/2025/04/SOC3104A_2024.pdf" target="_blank" rel="noopener">ISU Rural Iowa at a Glance</a>). DeWitt did not slow its decline. It reversed it. The families work, buy homes, pay taxes, and stay (<a class="source" href="https://www.wqad.com/article/news/local/dewitt-nonprofit-ukraine-refugees-new-lives-iowa-nice/526-450ee2bc-b05a-4fac-9f47-d7f40d40a8af" target="_blank" rel="noopener">WQAD</a>; <a class="source" href="https://www.kwqc.com/2024/02/26/local-professor-helping-ukrainian-refugees-settle-eastern-iowa/" target="_blank" rel="noopener">KWQC</a>), and communities across the state, like Greene County, are copying the model. This was not charity. It was a covenant, and both sides kept it. The only thing Iowa ever needed from Washington was for the paperwork to keep moving. So who are these families, and how did they get here?</p></details>
-            <details><summary>They fled a war and came through the front door. An American signed for every family.</summary><p>Every one of these families left a home Russia was bombing or occupying. Under Uniting for Ukraine, an American citizen sponsors a specific, named family and signs a legal declaration of financial support (<a class="source" href="https://forumtogether.org/article/explainer-uniting-for-ukraine/" target="_blank" rel="noopener">National Immigration Forum</a>; <a class="source" href="https://www.rescue.org/announcement/uniting-ukraine-info-and-faqs" target="_blank" rel="noopener">IRC</a>). The family is vetted overseas, lands at a normal airport, and receives humanitarian parole: temporary permission to be here, plus a renewable work permit, category (c)(11). No visa. No green card. No citizenship line, and nobody is asking for one. It works: DHS's own assessment found the pathway nearly eliminated irregular Ukrainian migration at the southern border (<a class="source" href="https://www.dhs.gov/sites/default/files/2024-12/2024_1104_dmo_plcy_uniting_for_ukraine_process_overview_and_assessment.pdf" target="_blank" rel="noopener">DHS, Nov. 2024</a>). The whole bargain rests on that one work permit. A family that can work is a taxpayer. One that cannot is a dependent. And (c)(11) is the exact category the rule due August 4 restricts.</p></details>
-            <details><summary>They are the talent small towns spend fortunes recruiting, and the payoff is real.</summary><p>Over 250,000 Ukrainians have arrived since Russia's 2022 invasion (<a class="source" href="https://www.dhs.gov/sites/default/files/2024-12/2024_1104_dmo_plcy_uniting_for_ukraine_process_overview_and_assessment.pdf" target="_blank" rel="noopener">DHS</a>). 78% hold higher education (<a class="source" href="https://data.unhcr.org/en/documents/download/120820" target="_blank" rel="noopener">UNHCR</a>), and they work at a higher rate than the native born, 67% versus 63% (<a class="source" href="https://www.migrationpolicy.org/article/ukrainian-immigrants-united-states" target="_blank" rel="noopener">Migration Policy Institute</a>). One family can be the nurse the clinic cannot hire, the driver the co-op is missing, and two kids who keep the school district alive. Statewide, newcomers contribute $1.8 billion in taxes and $5.2 billion in spending power (<a class="source" href="https://www.americanimmigrationcouncil.org/research/immigrants-in-iowa" target="_blank" rel="noopener">American Immigration Council</a>; <a class="source" href="https://dailyiowan.com/2025/12/09/immigrant-workers-drive-iowas-population-economic-growth-amid-rising-policy-fears/" target="_blank" rel="noopener">The Daily Iowan</a>), the money that keeps a rural grocery, hardware store, and diner open. The sponsored families set the curve: every family IA NICE has welcomed reached financial independence, and every one pays taxes.</p></details>
-            <details><summary>Washington keeps swinging a sledgehammer where Iowa needs a scalpel.</summary><p>In two years, Washington has terminated sponsorship parole programs, ended protected status for one country after another (<a class="source" href="https://www.nbcnews.com/politics/supreme-court/supreme-court-allows-trump-remove-protections-thousands-haitian-syrian-rcna263164" target="_blank" rel="noopener">NBC News</a>), and now proposes restricting the work permits of those who remain (<a class="source" href="https://www.federalregister.gov/documents/2026/06/05/2026-11285/clarification-of-discretionary-employment-authorization-for-certain-aliens" target="_blank" rel="noopener">Federal Register</a>). Each move is one rule for a million people. None of them distinguishes a vetted, sponsored, employed family in DeWitt from anyone else, and none asked the employer running short-handed, the school counting enrollment, or the Iowan who signed the sponsorship papers. Broad strokes from a thousand miles away, applied to towns Washington has never seen. The comment period is the one place federal law forces them to listen. Use it.</p></details>
-          </div>
+          <h3 class="fact-heading" id="fact-1"><span class="fact-number">1</span><span class="fact-title">Iowa made a promise, and made it the right way.</span></h3>
+          <p>When Russia invaded Ukraine, millions of families lost their homes to bombs and occupation overnight. An ocean away, rural Iowa had a quieter crisis: a shrinking population, consolidating schools, hospitals cutting back (<a class="source" href="https://smalltowns.soc.iastate.edu/2026/06/14/iowa-popchange-2025/" target="_blank" rel="noopener">ISU Small Towns Project</a>). One problem was families without a town. The other was towns without families.</p>
+          <p>DeWitt led the way with churches opening their doors. Neighbors raised roughly half a million dollars of their own money (<a class="source" href="https://www.iowapbs.org/shows/iowalife/episode/13917/iowa-life-episode-306" target="_blank" rel="noopener">Iowa PBS</a>; <a class="source" href="https://welcome.us/stories/an-entire-town-rallies-to-welcome-and-support-ukrainian-families" target="_blank" rel="noopener">Welcome.US</a>), and everyday citizens signed a legal promise to be responsible for specific, named Ukrainian families fleeing Russia's war (<a class="source" href="https://forumtogether.org/article/explainer-uniting-for-ukraine/" target="_blank" rel="noopener">National Immigration Forum</a>).</p>
+          <p>The families were vetted overseas and came through the front door (<a class="source" href="https://www.rescue.org/announcement/uniting-ukraine-info-and-faqs" target="_blank" rel="noopener">IRC</a>). No visa, no green card, no handouts. Just temporary permission to be here with one renewable work permit.</p>
+
+          <h3 class="fact-heading" id="fact-2"><span class="fact-number">2</span><span class="fact-title">Both sides kept it, and everyone won.</span></h3>
+          <p>DeWitt and IA NICE built a system that gets a family functional and on its feet in months: more than 20 families welcomed, every one financially independent, most within about four months (<a class="source" href="https://www.wqad.com/article/news/local/dewitt-nonprofit-ukraine-refugees-new-lives-iowa-nice/526-450ee2bc-b05a-4fac-9f47-d7f40d40a8af" target="_blank" rel="noopener">WQAD</a>). They worked, paid taxes, and bought homes and cars.</p>
+          <p>In a town of 5,000, those 65 newcomers are over 1% growth, the equivalent of Chicago adding 30,000 people, growth most rural towns can only dream of (<a class="source" href="https://smalltowns.soc.iastate.edu/wp-content/uploads/sites/504/2025/04/SOC3104A_2024.pdf" target="_blank" rel="noopener">ISU Rural Iowa at a Glance</a>). And they are exactly the workforce our short-handed towns needed.</p>
+          <p>DeWitt proved the model works, and the towns and communities across the state started to copy it. All Iowa ever needed from Washington was for the paperwork to keep moving.</p>
         </div>
       </article>
 
-      <article class="tab-panel" id="rule" aria-labelledby="rule-title">
-        <div class="panel-head">
-          <div>
-            <h2 id="rule-title">The new rule and the danger</h2>
-            <p>Why this matters no matter where an Iowan starts politically.</p>
-          </div>
-        </div>
-
+      <article class="tab-panel" id="rule" aria-labelledby="fact-3">
         <div class="article">
-          <h3>The model Iowa asked for</h3>
-          <p>This is legal, vetted, privately sponsored immigration. Families were screened overseas, an American sponsor took responsibility, and DHS says the pathway sharply reduced irregular Ukrainian border crossings (<a class="source" href="https://www.dhs.gov/sites/default/files/2024-12/2024_1104_dmo_plcy_uniting_for_ukraine_process_overview_and_assessment.pdf" target="_blank" rel="noopener">DHS, Nov. 2024</a>). No federal bill. No shortcut to citizenship. Just families working, paying taxes, and helping Iowa towns solve a real workforce problem.</p>
+          <h3 class="fact-heading" id="fact-3"><span class="fact-number">3</span><span class="fact-title">Washington is about to break what Iowa built.</span></h3>
+          <p>In two years, Washington has terminated sponsorship programs and ended protections country after country (<a class="source" href="https://www.nbcnews.com/politics/supreme-court/supreme-court-allows-trump-remove-protections-thousands-haitian-syrian-rcna263164" target="_blank" rel="noopener">NBC News</a>), and a rule proposed June 5 now takes aim at the work permit itself (<a class="source" href="https://www.federalregister.gov/documents/2026/06/05/2026-11285/clarification-of-discretionary-employment-authorization-for-certain-aliens" target="_blank" rel="noopener">Federal Register</a>).</p>
+          <p>Working families would have to prove they need to work. Permits would expire every year, throwing every family back into the backlog. And renewals would require an employer enrolled in E-Verify: the diner, the family farm, and the machine shop mostly never enrolled, and a trucker who owns his own rig has no employer to enroll at all. A family can do everything right and still lose its permit because of where they work.</p>
 
-          <h3>What is at risk right now</h3>
-          <p>Everything above depends on one document: the work permit. On June 5, 2026, DHS proposed a rule restricting work authorization for parolees, including the same category used by the DeWitt families (<a class="source" href="https://www.federalregister.gov/documents/2026/06/05/2026-11285/clarification-of-discretionary-employment-authorization-for-certain-aliens" target="_blank" rel="noopener">Federal Register, June 5, 2026</a>). The rule would make families prove "economic necessity," renew every year, and depend on employers using E-Verify. That puts small-town workers, farms, diners, machine shops, and self-employed drivers at risk through no fault of their own.</p>
+          <p class="pull">Now watch what one dead permit does to a town.</p>
 
-          <p>Waiting for the courts is risky. On June 25, 2026, the Supreme Court let the government end a different protection for hundreds of thousands from Haiti and Syria (<a class="source" href="https://www.nbcnews.com/politics/supreme-court/supreme-court-allows-trump-remove-protections-thousands-haitian-syrian-rcna263164" target="_blank" rel="noopener">NBC News</a>). Once this rule is final, families who are working, paying taxes, and supporting Iowa towns could lose the permit that makes that possible. The window to act closes August 4.</p>
+          <ul class="impact-list">
+            <li><i class="fa-solid fa-house-chimney" aria-hidden="true"></i><span>The income stops, but the mortgage and car loan do not.</span></li>
+            <li><i class="fa-solid fa-building-columns" aria-hidden="true"></i><span>The local bank watches its loans slide toward default.</span></li>
+            <li><i class="fa-solid fa-briefcase" aria-hidden="true"></i><span>The employer loses a trained worker.</span></li>
+            <li><i class="fa-solid fa-school" aria-hidden="true"></i><span>The school loses the enrollment that keeps its doors open.</span></li>
+          </ul>
+          <p>And the Iowans who signed the promise inherit the hardship: months of paperwork limbo, renewals, and mazes they now have to walk these families through, sharing the strain of a stopped income because they gave their word and they mean it.</p>
+          <p>If a promise can be turned into a nightmare, no Iowan signs again, no church opens its doors again, and the solution DeWitt built and proved dies under the sledgehammer.</p>
 
-          <p class="pull">A lapsed work permit is not only the families' problem.</p>
-
-          <h3>It is the sponsors' problem.</h3>
-          <p>Every sponsor signed a legal declaration of financial responsibility. The family's income stops. The sponsor's obligation does not. Washington's paperwork becomes an Iowa household's bill.</p>
-
-          <h3>It is the employers' problem.</h3>
-          <p>One DeWitt family worked 18 months, bought a home and a vehicle, then watched both jobs go on hold when their permits expired, draining savings while their employers sat short-handed (<a class="source" href="https://www.wqad.com/article/news/local/dewitt-nonprofit-ukraine-refugees-new-lives-iowa-nice/526-450ee2bc-b05a-4fac-9f47-d7f40d40a8af" target="_blank" rel="noopener">WQAD</a>). Multiply that by every family, in every town.</p>
-
-          <h3>It is the community's problem.</h3>
-          <p>The income stops, but the mortgage does not. The car loan does not. The local bank watches those loans slide toward default, and the school loses the enrollment that keeps its doors open. The people your town invested in become people your town must support. Every dollar of progress runs in reverse.</p>
-
-          <h3>And it is rural Iowa's problem.</h3>
-          <p>If a signature can be turned into a trap, no Iowan signs again. No church opens its doors again. The one solution rural Iowa built and proved dies under the sledgehammer.</p>
-
+          <p class="pull">Whatever your politics, this is the model you asked for: legal, vetted, privately funded, self-sufficient in months, and locally run. The only thing it cannot survive is a work permit that stops working.</p>
         </div>
       </article>
 
       <article class="tab-panel" id="action" aria-labelledby="action-title">
         <div class="panel-head">
           <div>
-            <h2 id="action-title">The one thing you can do right now</h2>
-            <p>This is a proposed rule, not a final one. Your comment becomes part of the official record.</p>
+            <h2 id="action-title"><i class="fa-solid fa-pen-nib" aria-hidden="true"></i> The one thing you can do right now</h2>
+            <p>The rule is not final. Federal law requires DHS to read and answer public comments before it can be.</p>
           </div>
         </div>
 
         <div class="article">
-          <p>This is a proposed rule, not a final one. Federal law requires DHS to read and answer relevant public comments before finalizing it. Yours becomes part of the official record.</p>
+          <p>The rule is not final. Federal law requires DHS to read and answer every public comment before it can be. The window closes 11:59 p.m. Eastern, August 4, 2026. Five minutes:</p>
           <div class="comment-steps">
-            <h3>Submit a comment.</h3>
-            <p>Submit before 11:59 p.m. Eastern, August 4, 2026. Five minutes:</p>
+            <h3><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> Submit a comment.</h3>
+            <p>Use the official federal docket. No account needed.</p>
 
             <ol class="action-list">
-              <li class="action-item"><strong>Go to the official comment form.</strong> No account needed. Use the button below to open the exact Regulations.gov comment page.</li>
-              <li class="action-item"><strong>Say who you are.</strong> Farmer, employer, teacher, sponsor, neighbor.</li>
-              <li class="action-item"><strong>Say you oppose restricting work authorization for humanitarian parolees under category (c)(11).</strong> Then explain what these families and this workforce mean to your town and to Iowa. Your own words, plain English. Personal beats form letter.</li>
-              <li class="action-item"><strong>Sign your name or check anonymous.</strong> Comments are posted publicly.</li>
-              <li class="action-item"><strong>Hit Submit. Save the receipt number.</strong></li>
+              <li class="action-item"><strong><a href="https://www.regulations.gov/commenton/USCIS-2026-0067-0001" target="_blank" rel="noopener">Go to regulations.gov, Docket No. USCIS-2026-0067.</a></strong> No account needed.</li>
+              <li class="action-item"><strong>Say who you are.</strong> A concerned Iowa citizen, farmer, employer, teacher, pastor, or sponsor.</li>
+              <li class="action-item"><strong>Say you oppose restricting work authorization for humanitarian parolees under category (c)(11).</strong> Explain what these families and this workforce mean to your town and to Iowa. Your own words, plain English.</li>
+              <li class="action-item"><strong>Hit Submit.</strong> Save the receipt number.</li>
             </ol>
           </div>
 
-          <h3>Call your representatives.</h3>
-          <p>Ask them to protect work authorization for legally sponsored humanitarian parolees. Iowa's delegation knows what these families mean to our towns.</p>
+          <h3><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call your representatives.</h3>
+          <p>Ask them to protect work authorization for legally sponsored humanitarian parolees.</p>
 
-          <h3>Get involved with IA NICE.</h3>
-          <p>Volunteer, donate, or help a family stay on its feet while permits are in limbo.</p>
+          <h3><i class="fa-solid fa-hands-holding-circle" aria-hidden="true"></i> Support IA NICE.</h3>
+          <p>Donate to help keep these families afloat while their permits are in limbo.</p>
 
-          <p class="pull">Iowans kept their word. The families kept theirs. Now it is Washington's turn, and yours. Do not let a rule written a thousand miles away foreclose on what Iowa built.</p>
+          <p class="pull">Iowans kept their word. The families kept theirs. Now it is Washington's turn, and yours.</p>
 
           <div class="content-cta">
-            <a class="button" href="https://www.regulations.gov/commenton/USCIS-2026-0067-0001" target="_blank" rel="noopener">Leave Your Comment</a>
+            <a class="button" href="https://www.regulations.gov/commenton/USCIS-2026-0067-0001" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Leave Your Comment</a>
           </div>
         </div>
       </article>
@@ -949,24 +1097,26 @@
   </main>
 
   <footer class="footer wrap">
-    IA NICE | IANICE.org. Source labels link to the named public sources or source organizations from the provided article draft.
+    IA NICE | IANICE.org. Source labels link to the named public sources or source organizations from the abridged article draft.
   </footer>
 
   <div class="mobile-action">
-    <a class="button" href="https://www.regulations.gov/commenton/USCIS-2026-0067-0001" target="_blank" rel="noopener">Comment Before August 4</a>
+    <a class="button" href="https://www.regulations.gov/commenton/USCIS-2026-0067-0001" target="_blank" rel="noopener"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Comment Before August 4</a>
   </div>
 
   <script>
     const sectionLinks = Array.from(document.querySelectorAll(".section-link"));
     const sections = Array.from(document.querySelectorAll(".tab-panel"));
     const issueVideo = document.getElementById("issueVideo");
+    const videoShell = issueVideo.closest(".video-shell");
+    const videoPlayButton = document.getElementById("videoPlayButton");
     const progressBar = document.getElementById("progressBar");
     const segmentLabel = document.getElementById("segmentLabel");
 
     const chapters = [
-      { id: "facts", label: "The Facts", start: 0 },
-      { id: "rule", label: "The Rule", start: 70 },
-      { id: "action", label: "Take Action", start: 163 }
+      { id: "facts", label: "The Promise", start: 0 },
+      { id: "rule", label: "The Problem", start: 58 },
+      { id: "action", label: "Take Action", start: 100 }
     ];
     let currentVideoSection = "facts";
     let scrollTicking = false;
@@ -1042,8 +1192,21 @@
 
     issueVideo.addEventListener("timeupdate", syncVideoToSection);
 
+    videoPlayButton.addEventListener("click", () => {
+      issueVideo.play();
+    });
+
+    issueVideo.addEventListener("play", () => {
+      videoShell.classList.add("is-playing");
+    });
+
+    issueVideo.addEventListener("pause", () => {
+      videoShell.classList.remove("is-playing");
+    });
+
     issueVideo.addEventListener("ended", () => {
       setProgress(100);
+      videoShell.classList.remove("is-playing");
     });
 
     issueVideo.addEventListener("seeked", syncVideoToSection);
@@ -1052,8 +1215,9 @@
       link.addEventListener("click", (event) => {
         event.preventDefault();
         const id = link.dataset.section;
+        const targetId = link.getAttribute("href").replace("#", "") || id;
         setActiveSection(id);
-        scrollToSection(id);
+        scrollToSection(targetId);
       });
     });
 
