@@ -84,15 +84,11 @@
       text-transform: uppercase;
     }
 
-    .mark {
-      display: grid;
-      place-items: center;
-      width: 42px;
-      height: 42px;
-      border: 2px solid rgba(255,255,255,.78);
-      border-radius: 12px;
-      background: rgba(255,255,255,.08);
-      font-size: 14px;
+    .brand-logo {
+      display: block;
+      width: 220px;
+      max-width: 42vw;
+      height: auto;
     }
 
     .top-actions {
@@ -151,6 +147,20 @@
       color: var(--navy);
       border-color: var(--line);
       background: var(--white);
+    }
+
+    .button.donate {
+      color: var(--white);
+      background: var(--blue);
+    }
+
+    .button.inline-donate {
+      min-height: 34px;
+      padding: 7px 12px;
+      margin-right: 4px;
+      border-radius: 10px;
+      font-size: 14px;
+      vertical-align: middle;
     }
 
     .button:hover,
@@ -492,6 +502,20 @@
       font-size: .78em;
     }
 
+    .heading-logo-link {
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
+      text-decoration: none;
+    }
+
+    .heading-logo {
+      display: block;
+      margin-top: 3px;
+      width: clamp(100px, 12vw, 130px);
+      height: auto;
+    }
+
     .article h3.fact-heading {
       display: grid;
       grid-template-columns: 42px minmax(0, 1fr);
@@ -748,7 +772,9 @@
 
     .content-cta {
       display: flex;
+      flex-wrap: wrap;
       justify-content: flex-end;
+      gap: 12px;
       margin-top: 24px;
       padding-top: 20px;
       border-top: 1px solid var(--line);
@@ -789,10 +815,31 @@
     }
 
     .footer {
-      padding: 26px 0 90px;
-      color: var(--muted);
-      border-top: 1px solid var(--line);
-      font-size: 14px;
+      padding: 60px 0 100px;
+      color: var(--white);
+      background: var(--blue);
+      text-align: center;
+      font-size: 15px;
+    }
+
+    .footer-inner {
+      display: grid;
+      justify-items: center;
+      gap: 20px;
+    }
+
+    .footer .button {
+      color: var(--blue);
+      background: var(--white);
+      min-width: 110px;
+    }
+
+    .footer p {
+      max-width: 620px;
+      margin: 0;
+      color: var(--white);
+      font-weight: 700;
+      line-height: 1.35;
     }
 
     .mobile-action {
@@ -857,7 +904,12 @@
       }
 
       .hero {
-        padding-top: 30px;
+        padding-top: 10px;
+        padding-bottom: 12px;
+      }
+
+      .eyebrow {
+        margin-bottom: 6px;
       }
 
       .final-cta .button {
@@ -965,8 +1017,9 @@
 <body>
   <header class="topbar wrap">
     <div class="brand">
-      <span class="mark">IA</span>
-      <span><i class="fa-solid fa-handshake-angle" aria-hidden="true"></i> NICE | IANICE.org</span>
+      <a href="https://www.ianice.org/" aria-label="IA NICE home">
+        <img class="brand-logo" src="https://images.squarespace-cdn.com/content/v1/634962fbd895060cf21fee58/5c665568-d3fc-4c39-926c-1d5edb8fd0a5/IA_WHITE.png?format=320w" alt="IA NICE">
+      </a>
     </div>
     <div class="top-actions">
       <span class="deadline"><i class="fa-regular fa-clock" aria-hidden="true"></i> Deadline: August 4</span>
@@ -1080,8 +1133,8 @@
           <h3><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call your representatives.</h3>
           <p>Ask them to protect work authorization for legally sponsored humanitarian parolees.</p>
 
-          <h3><i class="fa-solid fa-hands-holding-circle" aria-hidden="true"></i> Support IA NICE.</h3>
-          <p>Donate to help keep these families afloat while their permits are in limbo.</p>
+          <h3><i class="fa-solid fa-hands-holding-circle" aria-hidden="true"></i> Support <a class="heading-logo-link" href="https://www.ianice.org/" target="_blank" rel="noopener" aria-label="IA NICE website"><img class="heading-logo" src="https://images.squarespace-cdn.com/content/v1/634962fbd895060cf21fee58/5c665568-d3fc-4c39-926c-1d5edb8fd0a5/IA_WHITE.png?format=320w" alt="IA NICE"></a></h3>
+          <p><a class="button donate inline-donate" href="https://www.paypal.com/donate/?hosted_button_id=HF7L9R5W63CXY" target="_blank" rel="noopener"><i class="fa-solid fa-heart" aria-hidden="true"></i> Donate</a> to help keep these families afloat while their permits are in limbo, covering urgent gaps like rent, transportation, and basic household needs.</p>
 
           <p class="pull">Iowans kept their word. The families kept theirs. Now it is Washington's turn, and yours.</p>
 
@@ -1095,8 +1148,11 @@
 
   </main>
 
-  <footer class="footer wrap">
-    IA NICE | IANICE.org. Source labels link to the named public sources or source organizations from the abridged article draft.
+  <footer class="footer">
+    <div class="footer-inner wrap">
+      <a class="button" href="https://www.paypal.com/donate/?hosted_button_id=HF7L9R5W63CXY" target="_blank" rel="noopener">Donate</a>
+      <p>IA NICE, Inc. | DeWitt, Iowa | (563) 299-7956 | Tax ID 92-0567714 | IA NICE is a registered 501(c)3 nonprofit organization</p>
+    </div>
   </footer>
 
   <div class="mobile-action">
